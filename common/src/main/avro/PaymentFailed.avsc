@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "PaymentFailed",
+  "namespace": "com.training.ecommerce.avro",
+  "doc": "Émis par payment-service quand le paiement est refusé, déclenche la compensation",
+  "fields": [
+    { "name": "eventId", "type": "string" },
+    { "name": "orderId", "type": "string" },
+    { "name": "reason", "type": "string" },
+    { "name": "processedAt", "type": { "type": "long", "logicalType": "timestamp-millis" } }
+  ]
+}

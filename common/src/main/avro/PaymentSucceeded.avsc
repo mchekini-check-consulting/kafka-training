@@ -1,0 +1,13 @@
+{
+  "type": "record",
+  "name": "PaymentSucceeded",
+  "namespace": "com.training.ecommerce.avro",
+  "doc": "Émis par payment-service quand le paiement est accepté",
+  "fields": [
+    { "name": "eventId", "type": "string" },
+    { "name": "orderId", "type": "string" },
+    { "name": "paymentId", "type": "string" },
+    { "name": "amount", "type": "double" },
+    { "name": "processedAt", "type": { "type": "long", "logicalType": "timestamp-millis" } }
+  ]
+}

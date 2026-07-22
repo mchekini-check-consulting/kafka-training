@@ -1,0 +1,45 @@
+server:
+  port: 8185
+
+spring:
+  application:
+    name: analytics-service
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:15432}/analytics
+    username: training
+    password: training
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:19092,localhost:19094}
+    properties:
+      schema.registry.url: ${SCHEMA_REGISTRY_URL:http://localhost:18081}
+    consumer:
+      group-id: analytics-service
+      auto-offset-reset: earliest
+      # Démo auto-commit (par opposition au commit manuel de payment-service) :
+      # simple, mais peut perdre ou retraiter des messages en cas de crash.
+      # Acceptable ici : les métriques sont approximatives par nature.
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        specific.avro.reader: true
+    listener:
+      # 3 threads consumers : avec 6 partitions, chaque thread en traite 2.
+      # Démo rebalancing : lancer une 2e instance du service et observer.
+      concurrency: 3
+      observation-enabled: true
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

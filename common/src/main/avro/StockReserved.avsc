@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "StockReserved",
+  "namespace": "com.training.ecommerce.avro",
+  "doc": "Émis par inventory-service quand le stock d'une commande est réservé",
+  "fields": [
+    { "name": "eventId", "type": "string" },
+    { "name": "orderId", "type": "string" },
+    { "name": "totalAmount", "type": "double", "doc": "Montant à payer, propagé pour le payment-service" },
+    { "name": "reservedAt", "type": { "type": "long", "logicalType": "timestamp-millis" } }
+  ]
+}

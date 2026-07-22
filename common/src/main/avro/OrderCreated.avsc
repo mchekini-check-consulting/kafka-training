@@ -1,0 +1,29 @@
+{
+  "type": "record",
+  "name": "OrderCreated",
+  "namespace": "com.training.ecommerce.avro",
+  "doc": "Émis par order-service quand une commande est créée",
+  "fields": [
+    { "name": "eventId", "type": "string", "doc": "UUID unique de l'événement, utilisé pour la déduplication" },
+    { "name": "orderId", "type": "string" },
+    { "name": "customerId", "type": "string" },
+    { "name": "customerEmail", "type": "string" },
+    {
+      "name": "items",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "OrderItem",
+          "fields": [
+            { "name": "productId", "type": "string" },
+            { "name": "quantity", "type": "int" },
+            { "name": "unitPrice", "type": "double" }
+          ]
+        }
+      }
+    },
+    { "name": "totalAmount", "type": "double" },
+    { "name": "createdAt", "type": { "type": "long", "logicalType": "timestamp-millis" } }
+  ]
+}

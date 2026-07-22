@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "StockRejected",
+  "namespace": "com.training.ecommerce.avro",
+  "doc": "Émis par inventory-service quand le stock est insuffisant",
+  "fields": [
+    { "name": "eventId", "type": "string" },
+    { "name": "orderId", "type": "string" },
+    { "name": "reason", "type": "string" },
+    { "name": "rejectedAt", "type": { "type": "long", "logicalType": "timestamp-millis" } }
+  ]
+}

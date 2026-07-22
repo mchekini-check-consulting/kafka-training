@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "StockReleased",
+  "namespace": "com.training.ecommerce.avro",
+  "doc": "Émis par inventory-service quand le stock est libéré suite à un échec de paiement (compensation)",
+  "fields": [
+    { "name": "eventId", "type": "string" },
+    { "name": "orderId", "type": "string" },
+    { "name": "releasedAt", "type": { "type": "long", "logicalType": "timestamp-millis" } }
+  ]
+}

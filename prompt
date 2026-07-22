@@ -1,0 +1,19 @@
+Je veux créer un projet ecomemrce pour uen formation avec une architecture EDA ( Event driven architecture )
+
+L'application va contenir au max 6 services ( livraison, commande, paiement, notifications ), je te laisse me proposer les autres afin de choisir
+
+L'application doit communiquer avec des appels Rest sur quelques fonctionnalités et beaucoup de communication avec kafka en EDA
+
+L'objectif est de voir le max de notions de Kafka ( Consumer, Producer ), les notions de partions , replicas, leader, folowwer, acks, idempotence, eviter la ducplicaiton de messages,
+format des messages ( avro, json ), avantages, inconvénients, problématique de performances, schema registry, offsets ainsi que les problèmes qui reviennent le plus
+
+
+Le backend doit être en java 21 pour un petit use sur les virtuals threads, spring
+
+L'application doit être déployée sur kubernetes, et docker compose dans un premier temps
+
+Lec cluster Kafka doit avoir 2 brokers dans le docker compose, faudra préparer le Dockerfile de l'application, elle doit être déployabkle très facilement
+
+
+Faudra trouver un use case simple pour intégrer le corelation ID et le span ID, on va déployer par la suite avec une api gateway qui erst sur notre clsuter kube our centraliser l'authentification,
+faire du rate limiting, ....
